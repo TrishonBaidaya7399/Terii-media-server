@@ -17,13 +17,10 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 dotenv.config();
+const PORT = process.env.PORT || 5000;
 mongoose
   .connect(process.env.MONGO_DB)
-  .then(() =>
-    app.listen(process.env.PORT, () =>
-      console.log(`Listening at ${process.env.PORT}`)
-    )
-  )
+  .then(() => app.listen(PORT, () => console.log(`Listening at ${PORT}`)))
   .catch((error) => console.log("Error"));
 
 //Usage of routes
